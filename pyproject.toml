@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "tf2-api"
+version = "0.1.0"
+description = ""
+authors = ["Adrian Ciolek <ciolek.adrian@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.2"
+gunicorn = "^21.2.0"
+psycopg2-binary = "^2.9.9"
+django-prefix-id = "^1.0.0"
+djangorestframework = "^3.14.0"
+django-filter = "^23.5"
+drf-spectacular = "^0.27.1"
+vdf = "^3.4"
+polib = "^1.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+exclude = [
+    "qualites/migrations",
+    "qualites/tests", 
+    "colors/migrations",
+    "colors/tests",
+]
+select = ["ALL"]
+ignore = [
+    # Description: Missing type annotation for self in method
+    # Rationale: It is mostly redundant, as is for ANN102.
+    "ANN101",
+
+    # Description: Missing type annotation for cls in method
+    # Rationale: It is mostly redundant, as is for ANN101.
+    "ANN102",
+
+    # Description: Dynamically typed expressions (typing.Any) are disallowed
+    # Rationale:
+    #  We use Any to allow user to constrain return types of our functions on their own.
+    #  For example, having a function `def foo() -> Any: ...` allows user to write
+    #  `my_foo: int = foo()` and have it passed type checking, since `Any` disables
+    #  type checking completely.
+    "ANN401",
+
+    # Description: 1 blank line required before class docstring
+    # Rationale: Remove the warning -- D211 (no-blank-line-before-class) preferred.
+    "D203",
+
+    # Description: Multi-line docstring summary should start at the second line
+    # Rationale: Remove the warning -- D213 (multi-line-summary-second-line) preferred.
+    "D212",
+
+    # Description: Line contains TODO, consider resolving the issue
+    # Rationale: Not appropriate for the project.
+    "FIX002",
+    "TCH001",
+    "TCH002",
+    "E501",
+    "EXE002",
+    "B008",
+    "A003",
+]
