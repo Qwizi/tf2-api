@@ -20,4 +20,8 @@ class Map(models.Model):
 
     def get_localized_name(self) -> str:
         """Get the localized name of the map."""
-        return _(self.localizedname)
+        return _(self.localizedname.replace("#", ""))
+    
+    def get_authors(self) -> str:
+        """Get the authors of the map."""
+        return _(self.authors.replace("#", ""))

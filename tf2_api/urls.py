@@ -35,4 +35,6 @@ urlpatterns = [  # noqa: RUF005
     path("rarites/", include("rarites.urls")),
     path("maps/", include("maps.urls")),
     path("test", views.view, name="test"),
+        path("i18n/", include("django.conf.urls.i18n")),  #Make sure this is present
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
