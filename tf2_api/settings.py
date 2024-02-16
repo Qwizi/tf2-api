@@ -18,7 +18,7 @@ from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-LOCALE_PATHS = ( os.path.join(BASE_DIR, 'locale'), )
+LOCALE_PATHS = ( os.path.join(BASE_DIR, "locale"), )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -103,6 +103,16 @@ DATABASES = {
     },
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.environ.get("REDIS_URL", "redis://127.0.0.1:6379/1"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -154,3 +164,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     "/var/www/static/",
 ]
+
+CELERY_BROKER_URL = os.environ.get("REDIS_URL", "redis://localhost:6379")
+CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL", "redis://localhost:6379")

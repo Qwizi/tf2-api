@@ -13,6 +13,25 @@ services:
     depends_on:
       db:
         condition: service_started
+      redis:
+        condition: service_started
+    restart: always
+    networks:
+      - tf2-api-network
+  celery:
+    build: ./
+    container_name: tf2_api_celery
+    # command: gunicorn tf2_api.wsgi:application --bind 0.0.0.0:8000 --reload
+    command: python -m celery -A tf2_api worker -l info
+    volumes:
+      - ./:/app/
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
     restart: always
     networks:
       - tf2-api-network
@@ -30,6 +49,16 @@ services:
       - tf2-api-network
     healthcheck:
       test: "exit 0"
+  redis:
+    image: "redis:alpine"
+    container_name: tf2_api_redis
+    restart: always
+    expose:
+      - "6380:6379"
+    networks:
+      - tf2-api-network
+    healthcheck:
+      test: "exit 1"
 
 networks:
   tf2-api-network:
