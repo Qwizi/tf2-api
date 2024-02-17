@@ -8,20 +8,26 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from maps.tasks import parse_maps
+from worker.worker import WorkerManger, ItemsGameFileWorker
 
 
 @api_view(["GET"])
 def view(request):
     # # path to the items_game.txt file in static folder
-    items_game_path = Path(__file__).resolve().parent.parent / "static" / "items_game.txt"
-    tf_english_path = Path(__file__).resolve().parent.parent / "static" / "tf_english.txt"
-    items_game_vdf = vdf.load(items_game_path.open("r", encoding="utf-8"))
-    transaction_path = Path(__file__).resolve().parent.parent / "locale"/ "en" / "LC_MESSAGES" / "django.po"
-    tf_english_vdf = vdf.load(tf_english_path.open("r", encoding="utf-8"))
-    tokens = tf_english_vdf["lang"]["Tokens"]
-    maps = items_game_vdf["items_game"]["master_maps_list"]
-    print(maps)
-    parse_maps.delay(maps)
+    # items_game_path = Path(__file__).resolve().parent.parent / "static" / "items_game.txt"
+    # tf_english_path = Path(__file__).resolve().parent.parent / "static" / "tf_english.txt"
+    # items_game_vdf = vdf.load(items_game_path.open("r", encoding="utf-8"))
+    # transaction_path = Path(__file__).resolve().parent.parent / "locale"/ "en" / "LC_MESSAGES" / "django.po"
+    # tf_english_vdf = vdf.load(tf_english_path.open("r", encoding="utf-8"))
+    # tokens = tf_english_vdf["lang"]["Tokens"]
+    # maps = items_game_vdf["items_game"]["master_maps_list"]
+    # print(maps)
+    # parse_maps.delay(maps)
+
+    worker = WorkerManger()
+    worker.add_worker(ItemsGameFileWorker("items_game.txt"))
+    worker.init_track_files_models()
+    worker.run_workers()
 
     # po = polib.POFile()
     # po.metadata = {

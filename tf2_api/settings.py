@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "qualities.apps.QualitiesConfig",
     "rarites.apps.RaritesConfig",
     "maps.apps.MapsConfig",
+    "worker.apps.WorkerConfig",
     "rest_framework",
     "django_filters",
     "drf_spectacular",

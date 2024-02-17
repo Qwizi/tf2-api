@@ -18,6 +18,8 @@ vdf = "^3.4"
 polib = "^1.2.0"
 django-redis = "^5.4.0"
 celery = "^5.3.6"
+httpx = "^0.26.0"
+pygithub = "^2.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
