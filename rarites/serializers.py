@@ -13,5 +13,5 @@ class RaritySerializer(serializers.ModelSerializer):
         """Meta class for the ColorSerializer."""
 
         model = Rarity
-        fields = ("id", "game_item_id", "value", "loc_key", "color", "drop_sound", "next_rarity")
+        fields = ("id", "game_item_id", "value", "loc_key", "loc_key_weapon", "color", "next_rarity")
         depth = 1

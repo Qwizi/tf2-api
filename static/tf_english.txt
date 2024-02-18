@@ -19291,13 +19291,7 @@ To win a point, escort your Giant to the enemy gate.
 Other Notes:
 Pick up your team's bomb to become a Giant and lead the charge to the enemy gate. Each team can have one Giant at a time."
 
-"pl_frostcliff_description"			"Objective:
-Escort the payload to the enemy base. Stand near the payload to make it move.
-
-Other Notes:
-Enemies can block the payload by getting close to it.
-
-Have a wonderfull Smissmas!"
+"pl_frostcliff_description"			"Objective:Escort the payload to the enemy base. Stand near the payload to make it move.Other Notes:Enemies can block the payload by getting close to it.Have a wonderfull Smissmas!"
 
 "cp_gravelpit_snowy_description"						"Objective:
 RED team wants to create an eternal winter with Global Cooling! BLU team must stop them by capturing all Control Points to take the Freeze Ray offline.

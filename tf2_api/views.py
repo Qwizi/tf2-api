@@ -1,4 +1,5 @@
 from pathlib import Path
+from django.conf import settings
 from django.http import HttpResponse
 
 import polib
@@ -8,7 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from maps.tasks import parse_maps
-from worker.worker import WorkerManger, ItemsGameFileWorker
+from worker.worker import TranslationFileWorker, WorkerManger, ItemsGameFileWorker
 
 
 @api_view(["GET"])
@@ -26,6 +27,8 @@ def view(request):
 
     worker = WorkerManger()
     worker.add_worker(ItemsGameFileWorker("items_game.txt"))
+    # for language_code, language in settings.LANGUAGES:
+    #     worker.add_worker(TranslationFileWorker(language_code, language, f"tf_{language.lower()}.txt"))
     worker.init_track_files_models()
     worker.run_workers()
 

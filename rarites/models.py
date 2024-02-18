@@ -11,8 +11,8 @@ class Rarity(models.Model):
     game_item_id = models.CharField(max_length=255)
     value = models.CharField(max_length=255)
     loc_key = models.CharField(max_length=255)
+    loc_key_weapon = models.CharField(max_length=255)
     color = models.ForeignKey("colors.Color", on_delete=models.CASCADE)
-    drop_sound = models.CharField(max_length=255)
     next_rarity = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self) -> str:

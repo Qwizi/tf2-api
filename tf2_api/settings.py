@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "qualities.apps.QualitiesConfig",
     "rarites.apps.RaritesConfig",
     "maps.apps.MapsConfig",
+    "prefabs.apps.PrefabsConfig",
     "worker.apps.WorkerConfig",
     "rest_framework",
     "django_filters",
@@ -140,8 +141,30 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = (
-    ("en-us", _("English")),
-    ("de", _("German")),
+    ("en", "English"),
+    ("de", "German"),
+    ("pt-br", "Brazilian"),
+    ("bg", "Bulgarian"),
+    ("cs", "Czech"),
+    ("da", "Danish"),
+    ("nl", "Dutch"),
+    ("fi", "Finnish"),
+    ("fr", "French"),
+    ("el", "Greek"),
+    ("hu", "Hungarian"),
+    ("it", "Italian"),
+    ("ja", "Japanese"),
+    ("ko", "Korean"),
+    ("no", "Norwegian"),
+    ("pl", "Polish"),
+    ("pt", "Portuguese"),
+    ("ro", "Romanian"),
+    ("ru", "Russian"),
+    ("es", "Spanish"),
+    ("sv", "Swedish"),
+    ("tr", "Turkish"),
+    ("uk", "Ukrainian"),
+    ("th", "Thai"),
 )
 
 TIME_ZONE = "UTC"
